@@ -435,11 +435,3 @@
   personal portfolio. You're more than welcome to fork and maintain your own
   version if you like!
 </p>
-
-<h2>⚖️ License</h2>
-
-<p>
-  The Snapchat name, artwork, trademark are all property of Snap Inc. This
-  project is provided for educational purposes only. It is not affiliated with
-  and has not been approved by Snap Inc.
-</p>
