@@ -63,12 +63,7 @@ npm install
 
 ### 2. Add a Mapbox key (optional, recommended)
 
-The snap map features need a Mapbox token. [Get a free API key](https://docs.mapbox.com/help/glossary/access-token/), then update `.env`:
-
-```diff
-- REACT_APP_MAP_BOX_API_KEY=REPLACE_WITH_API_KEY
-+ REACT_APP_MAP_BOX_API_KEY=xy.abc123
-```
+The snap map features need a Mapbox token. [Get a free API key](https://docs.mapbox.com/help/glossary/access-token/), then open `.env` and replace the placeholder value of `REACT_APP_MAP_BOX_API_KEY` with your own token. Never commit a real token to the repository.
 
 ### 3. Run it
 
