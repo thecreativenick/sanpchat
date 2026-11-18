@@ -31,8 +31,8 @@ describe('api', () => {
     });
 
     it('keeps query strings on the URL', async () => {
-      await api.get('/messages.json?thread=Lisa');
-      expect(fetchMock.mock.calls[0][0]).toBe('./api/messages.json?thread=Lisa');
+      await api.get('/messages.json?thread=TestFriend');
+      expect(fetchMock.mock.calls[0][0]).toBe('./api/messages.json?thread=TestFriend');
     });
 
     it('uses the endpoint as-is for external URLs', async () => {
@@ -50,14 +50,14 @@ describe('api', () => {
     });
 
     it('resolves to [null, parsedJson] on success', async () => {
-      const session = { session: { id: 'abc', username: 'Julia' } };
+      const session = { session: { id: 'abc', username: 'TestUser' } };
       fetchMock.mockResolvedValue(jsonResponse(session));
       await expect(api.get('/session.json')).resolves.toEqual([null, session]);
     });
   });
 
   describe('write methods', () => {
-    const payload = { author: 'Julia', message: 'Hi!', count: 2, read: false };
+    const payload = { author: 'TestUser', message: 'Hi!', count: 2, read: false };
 
     it.each(['post', 'put', 'patch'] as const)(
       '%s() sends the data as a JSON body with a JSON content type',

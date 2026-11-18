@@ -11,27 +11,27 @@ export default {
 const users: User[] = [
   {
     id: '00975694-7b26-4cdc-83d7-a6bdd783c987',
-    username: 'Itzel50',
-    avatar: 'https://randomuser.me/api/portraits/women/19.jpg',
+    username: 'User1',
+    avatar: './images/bitmoji-other.png',
     gender: 'male',
     age: 22,
-    fullName: 'Josiane Keebler'
+    fullName: 'Test User 1'
   },
   {
     id: '0a08aeaa-5d5c-4367-bbd4-078cf9cb8f5f',
-    username: 'Dax81',
-    avatar: 'https://randomuser.me/api/portraits/men/85.jpg',
+    username: 'User2',
+    avatar: './images/bitmoji-other.png',
     gender: 'male',
     age: 22,
-    fullName: 'Edd Cassin'
+    fullName: 'Test User 2'
   },
   {
     id: '329798fe-82f5-4ff2-a71e-113e2262de30',
-    username: 'Adela.Shields43',
-    avatar: 'https://randomuser.me/api/portraits/women/8.jpg',
+    username: 'User3',
+    avatar: './images/bitmoji-other.png',
     gender: 'male',
     age: 22,
-    fullName: 'Nestor Nienow'
+    fullName: 'Test User 3'
   }
 ];
 

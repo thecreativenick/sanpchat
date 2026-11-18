@@ -33,37 +33,37 @@ describe('ChatStore', () => {
 
   describe('postMessage()', () => {
     it('stores the time as a millisecond timestamp number', () => {
-      const { payload } = postMessage('Julia', 'Hello!');
+      const { payload } = postMessage('TestUser', 'Hello!');
       expect(typeof payload.time).toBe('number');
       expect(payload.time).toBe(NOW);
     });
 
     it('stores a time that converts back to the correct date', () => {
-      const { payload } = postMessage('Julia', 'Hello!');
+      const { payload } = postMessage('TestUser', 'Hello!');
       expect(new Date(payload.time).toISOString()).toBe('2021-06-15T12:00:00.000Z');
     });
 
     it('builds the rest of the message from its arguments', () => {
-      const { payload } = postMessage('Julia', 'Hello!');
+      const { payload } = postMessage('TestUser', 'Hello!');
       expect(payload).toEqual({
         id: expect.stringMatching(UUID_V4),
-        author: 'Julia',
+        author: 'TestUser',
         message: 'Hello!',
         time: NOW
       });
     });
 
     it('gives each message a unique id, even when posted in the same millisecond', () => {
-      const first = postMessage('Julia', 'One');
-      const second = postMessage('Julia', 'Two');
+      const first = postMessage('TestUser', 'One');
+      const second = postMessage('TestUser', 'Two');
       expect(first.payload.time).toBe(second.payload.time);
       expect(first.payload.id).not.toBe(second.payload.id);
     });
 
     it('appends the message to the end of the list', () => {
       const store = createStore();
-      store.dispatch(postMessage('Julia', 'First'));
-      store.dispatch(postMessage('Lisa', 'Second'));
+      store.dispatch(postMessage('TestUser', 'First'));
+      store.dispatch(postMessage('TestFriend', 'Second'));
 
       const { data } = store.getState().chat.messages;
       expect(data.map(({ message }) => message)).toEqual(['First', 'Second']);
@@ -72,21 +72,21 @@ describe('ChatStore', () => {
 
   describe('getMessages()', () => {
     it('requests the thread from the mock API', async () => {
-      await createStore().dispatch(getMessages('Lisa'));
-      expect(fetchMock).toHaveBeenCalledWith('./api/messages.json?thread=Lisa', {
+      await createStore().dispatch(getMessages('TestFriend'));
+      expect(fetchMock).toHaveBeenCalledWith('./api/messages.json?thread=TestFriend', {
         method: 'get'
       });
     });
 
     it('sets loading while the request is in flight', () => {
       const store = createStore();
-      store.dispatch(getMessages('Lisa'));
+      store.dispatch(getMessages('TestFriend'));
       expect(store.getState().chat.messages.loading).toBe(true);
     });
 
     it('stores the messages from the API unchanged', async () => {
       const store = createStore();
-      await store.dispatch(getMessages('Lisa'));
+      await store.dispatch(getMessages('TestFriend'));
 
       const { messages } = store.getState().chat;
       expect(messages.loading).toBe(false);
@@ -97,7 +97,7 @@ describe('ChatStore', () => {
     it('sets error when the request fails', async () => {
       fetchMock.mockRejectedValue(new TypeError('Failed to fetch'));
       const store = createStore();
-      await store.dispatch(getMessages('Lisa'));
+      await store.dispatch(getMessages('TestFriend'));
 
       const { messages } = store.getState().chat;
       expect(messages.loading).toBe(false);
@@ -109,8 +109,8 @@ describe('ChatStore', () => {
   describe('loaded and posted messages share one format', () => {
     const loadThenPost = async () => {
       const store = createStore();
-      await store.dispatch(getMessages('Lisa'));
-      store.dispatch(postMessage('Julia', 'A new message'));
+      await store.dispatch(getMessages('TestFriend'));
+      store.dispatch(postMessage('TestUser', 'A new message'));
       return store.getState().chat.messages.data;
     };
 

@@ -17,10 +17,10 @@ describe('Search', () => {
   });
 
   it('can filter search results', () => {
-    cy.get('@searchField').focus().type('ed');
-    cy.get('@searchDrawer').find('.results .user-card').should('have.length', 3);
+    cy.get('@searchField').focus().type('User4');
+    cy.get('@searchDrawer').find('.results .user-card').should('have.length', 6);
     cy.wait(100);
-    cy.get('@searchField').type('d');
+    cy.get('@searchField').type('4');
     cy.get('@searchDrawer').find('.results .user-card').should('have.length', 1);
   });
 

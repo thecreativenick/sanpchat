@@ -7,7 +7,7 @@ const initialState: {
   thread: string;
   messages: Loadable<Message[]>;
 } = {
-  thread: 'Lisa',
+  thread: 'TestFriend',
   messages: loadable
 };
 

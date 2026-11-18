@@ -9,7 +9,7 @@ export default {
 };
 
 export const Default = () => (
-  <Avatar src="https://randomuser.me/api/portraits/women/19.jpg" />
+  <Avatar src="./images/bitmoji-other.png" />
 );
 
 export const Sizes = () => {
@@ -22,5 +22,5 @@ export const Sizes = () => {
     },
     'sm'
   );
-  return <Avatar src="https://randomuser.me/api/portraits/women/19.jpg" size={size} />;
+  return <Avatar src="./images/bitmoji-other.png" size={size} />;
 };

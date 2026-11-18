@@ -37,13 +37,13 @@ describe('Chat', () => {
     const msg = 'abc';
     cy.get('@chatField').type(msg).type('{enter}');
     cy.wait(5000);
-    cy.getLastMessage(true).should('equal', 'Lisa');
+    cy.getLastMessage(true).should('equal', 'TestFriend');
     cy.get('@chatField').type(msg).type('{enter}');
     cy.get('@chatField').type(msg).type('{enter}');
     cy.wait(5000);
-    cy.getLastMessage(true).should('equal', 'Lisa');
+    cy.getLastMessage(true).should('equal', 'TestFriend');
     cy.wait(5000);
     cy.get('@chatDrawer').find('[data-test=message]').last().prev().as('lastMessage');
-    cy.get('@lastMessage').find('header').invoke('text').should('equal', 'Lisa');
+    cy.get('@lastMessage').find('header').invoke('text').should('equal', 'TestFriend');
   });
 });

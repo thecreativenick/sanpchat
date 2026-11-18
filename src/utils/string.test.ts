@@ -2,7 +2,7 @@ import { escapeRegex, uuidv4 } from './string';
 
 describe('escapeRegex()', () => {
   it('leaves plain text untouched', () => {
-    expect(escapeRegex('Julia Charles 123')).toBe('Julia Charles 123');
+    expect(escapeRegex('Test User 123')).toBe('Test User 123');
   });
 
   it('returns an empty string for empty input', () => {
@@ -20,7 +20,7 @@ describe('escapeRegex()', () => {
   });
 
   it('produces a pattern that matches the input literally', () => {
-    const input = 'Adela.Shields43 (+1) [test]? $5 a|b ^_^ c:\\';
+    const input = 'Test.User43 (+1) [test]? $5 a|b ^_^ c:\\';
     const pattern = new RegExp(`^${escapeRegex(input)}$`);
     expect(pattern.test(input)).toBe(true);
   });
