@@ -25,15 +25,7 @@ const chatSlice = createSlice({
   initialState,
   reducers: {
     postMessage: {
-      reducer(
-        state,
-        action: PayloadAction<{
-          id: string;
-          author: string;
-          message: string;
-          time: string;
-        }>
-      ) {
+      reducer(state, action: PayloadAction<Message>) {
         const { id, author, message, time } = action.payload;
         state.messages.data.push({
           id,
@@ -48,7 +40,7 @@ const chatSlice = createSlice({
             id: uuidv4(),
             author,
             message,
-            time: JSON.stringify(new Date())
+            time: Date.now()
           }
         };
       }

@@ -2,7 +2,8 @@ export type Message = {
   id: string;
   author: string;
   message: string;
-  time: string;
+  // Unix timestamp in milliseconds, same format as public/api/messages.json
+  time: number;
 };
 
 export const dummyMessages = [

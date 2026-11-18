@@ -88,9 +88,9 @@ const Chat: React.FC = () => {
         ) : messages.error ? (
           <Error />
         ) : (
-          messages.data.map(({ author, message, time }: Message) => (
+          messages.data.map(({ id, author, message }: Message) => (
             <article
-              key={time}
+              key={id}
               className={classNames('message', {
                 other: author !== username
               })}

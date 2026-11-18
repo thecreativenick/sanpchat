@@ -1,5 +1,10 @@
+// e.g. "1 minute ago", "5 minutes ago"
+const timeAgo = (count: number, unit: string): string =>
+  `${count} ${unit}${count === 1 ? '' : 's'} ago`;
+
 export const relativeTime = (timestamp: number): string => {
-  const msPerMinute = 60 * 1000;
+  const msPerSecond = 1000;
+  const msPerMinute = msPerSecond * 60;
   const msPerHour = msPerMinute * 60;
   const msPerDay = msPerHour * 24;
   const msPerMonth = msPerDay * 30;
@@ -7,17 +12,20 @@ export const relativeTime = (timestamp: number): string => {
 
   const elapsed = Date.now() - timestamp;
 
-  if (elapsed < msPerMinute) {
-    return Math.floor(elapsed / 1000) + ' seconds ago';
+  // Timestamps in the future (e.g. clock drift between devices)
+  if (elapsed < 0) {
+    return 'just now';
+  } else if (elapsed < msPerMinute) {
+    return timeAgo(Math.floor(elapsed / msPerSecond), 'second');
   } else if (elapsed < msPerHour) {
-    return Math.floor(elapsed / msPerMinute) + ' minutes ago';
+    return timeAgo(Math.floor(elapsed / msPerMinute), 'minute');
   } else if (elapsed < msPerDay) {
-    return Math.floor(elapsed / msPerHour) + ' hours ago';
+    return timeAgo(Math.floor(elapsed / msPerHour), 'hour');
   } else if (elapsed < msPerMonth) {
-    return Math.floor(elapsed / msPerDay) + ' days ago';
+    return timeAgo(Math.floor(elapsed / msPerDay), 'day');
   } else if (elapsed < msPerYear) {
-    return Math.floor(elapsed / msPerMonth) + ' months ago';
+    return timeAgo(Math.floor(elapsed / msPerMonth), 'month');
   } else {
-    return Math.floor(elapsed / msPerYear) + ' years ago';
+    return timeAgo(Math.floor(elapsed / msPerYear), 'year');
   }
 };

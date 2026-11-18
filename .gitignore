@@ -27,3 +27,14 @@ yarn-error.log*
 
 public/filters/jeelizFaceFilter/
 cypress/videos/
+
+# python virtual environments and caches
+.venv/
+venv/
+__pycache__/
+
+# other build and generated output
+dist/
+storybook-static/
+cypress/screenshots/
+.cache/
